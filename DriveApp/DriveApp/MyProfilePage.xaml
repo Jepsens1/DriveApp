@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DriveApp.MyProfilePage"
+             BackgroundColor="RoyalBlue">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Antal kørte kilometer" FontSize="Title" TextColor="White" Padding="30,10,30,10"/>
+            <Label x:Name="KmToday" Text="" FontSize="Title" TextColor="White" Padding="30,10,30,10"/>
+            <Label x:Name="KmWeek" Text="" FontSize="Title" TextColor="White" Padding="30,10,30,10"/>
+            <Label x:Name="KmMonth" Text="" FontSize="Title" TextColor="White" Padding="30,10,30,10"/>
+            <Button Text="TrackingPage" BackgroundColor="White" Clicked="NavigationButton_Click"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
