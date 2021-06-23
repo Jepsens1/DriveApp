@@ -27,7 +27,7 @@ namespace DriveApp
             await Init();
             MyStats stats = new MyStats
             {
-                Day = DateTime.Now.DayOfWeek.ToString(),
+                Day = DateTime.Today.DayOfWeek.ToString(),
                 Timecreated = DateTime.Today,
                 Distance = distance,
             };

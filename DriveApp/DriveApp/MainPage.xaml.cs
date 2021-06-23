@@ -187,6 +187,7 @@ namespace DriveApp
 
         private async void NavigateButton_Click(object sender, EventArgs e)
         {
+            WriteToDataBase();
             await Navigation.PushAsync(new MyProfilePage());
         }
 
