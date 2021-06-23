@@ -168,7 +168,6 @@ namespace DriveApp
             {
                 await RecieveLocation();
                 Thread.Sleep(1000);
-
             }
         }
         public async void GetSpeed()
@@ -202,7 +201,6 @@ namespace DriveApp
             {
                 Console.WriteLine(e.Message);
             }
-
         }
     }
 

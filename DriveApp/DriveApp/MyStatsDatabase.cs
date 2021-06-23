@@ -28,13 +28,14 @@ namespace DriveApp
             MyStats stats = new MyStats
             {
                 Day = DateTime.Now.DayOfWeek.ToString(),
-                Timecreated = DateTime.Today.Date,
+                Timecreated = DateTime.Today,
                 Distance = distance,
             };
             int id = await db.InsertAsync(stats);
         }
         public async Task RemoveStats(int id)
         {
+
             await Init();
             await db.DeleteAsync<MyStats>(id);
         }
