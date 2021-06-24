@@ -29,7 +29,6 @@ namespace DriveApp
             Calendar calendar = cultureInfo.Calendar;
             CalendarWeekRule weekRule = cultureInfo.DateTimeFormat.CalendarWeekRule;
             DayOfWeek dayOfWeek = cultureInfo.DateTimeFormat.FirstDayOfWeek;
-           
 
             List <MyStats> stats = await database.GetStats();
             double todaysDistance = 0;
@@ -41,14 +40,25 @@ namespace DriveApp
                 {
                     
                     todaysDistance += stats[i].Distance;
+                   
                 }
                 if (calendar.GetWeekOfYear(stats[i].Timecreated, weekRule, dayOfWeek) == calendar.GetWeekOfYear(DateTime.Today, weekRule, dayOfWeek) && stats[i].Timecreated.Year == DateTime.Today.Year)
                 {
+                    if (stats[i].Timecreated == DateTime.Today)
+                    {
+
+                    }
                     WeekDistance += stats[i].Distance;
+                    WeekStats.Text += $"{stats[i].Day}: Kørt: {stats[i].Distance}\n";
                 }
                 if (stats[i].Timecreated.Month == DateTime.Today.Month)
                 {
+                    if (stats[i].Timecreated == DateTime.Today)
+                    {
+
+                    }
                     MonthDistance += stats[i].Distance;
+                    MonthStats.Text += $"{stats[i].Day}: Kørt: {stats[i].Distance}\n";
                 }
             }
             KmToday.Text = $"Kørt idag {Math.Truncate(todaysDistance * 1000) / 1000}";

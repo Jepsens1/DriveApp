@@ -8,7 +8,9 @@
             <Label Text="Antal kørte kilometer" FontSize="Title" TextColor="White" Padding="30,10,30,10"/>
             <Label x:Name="KmToday" Text="" FontSize="Title" TextColor="White" Padding="30,10,30,10"/>
             <Label x:Name="KmWeek" Text="" FontSize="Title" TextColor="White" Padding="30,10,30,10"/>
+            <Label x:Name="WeekStats" Text="" FontSize="Default" TextColor="White" Padding="30,10,30,10"/>
             <Label x:Name="KmMonth" Text="" FontSize="Title" TextColor="White" Padding="30,10,30,10"/>
+            <Label x:Name="MonthStats" Text="" FontSize="Default" TextColor="White" Padding="30,10,30,10"/>
             <Button Text="TrackingPage" BackgroundColor="White" Clicked="NavigationButton_Click"></Button>
         </StackLayout>
     </ContentPage.Content>
