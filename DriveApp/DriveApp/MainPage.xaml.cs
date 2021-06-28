@@ -36,9 +36,17 @@ namespace DriveApp
             }
             else
             {
-                databaseManager.WriteToDataBase();
                 ((Button)sender).BackgroundColor = Color.Red;
                 ((Button)sender).Text = "Start Tracking";
+                if (tracking.distance == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    databaseManager.WriteToDataBase(tracking.distance);
+
+                }
             }
 
         }
@@ -61,14 +69,13 @@ namespace DriveApp
         }
         async Task RecieveLocation()
         {
-            string location = await tracking.RecieveLocation();
+            tracking.distance = await tracking.RecieveLocation();
             Device.BeginInvokeOnMainThread(() =>
             {
-                GPS.Text = location;
+                GPS.Text = tracking.distance.ToString();
             });
         }
-        //needs some work
-        
+
         public async void UpdatePosition()
         {
             while (tracking.isTracking)
@@ -94,8 +101,17 @@ namespace DriveApp
 
         private async void NavigateButton_Click(object sender, EventArgs e)
         {
-            databaseManager.WriteToDataBase();
-            await Navigation.PushAsync(new MyProfilePage());
+            if (tracking.distance == 0)
+            {
+                await Navigation.PushAsync(new MyProfilePage());
+
+            }
+            else
+            {
+                databaseManager.WriteToDataBase(tracking.distance);
+                await Navigation.PushAsync(new MyProfilePage());
+            }
+
         }
     }
 

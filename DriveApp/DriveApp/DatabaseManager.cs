@@ -10,7 +10,6 @@ namespace DriveApp
     class DatabaseManager
     {
         MyStatsDatabase database = new MyStatsDatabase();
-        Tracking tracking = new Tracking();
         public async Task CheckWritePermission()
         {
 
@@ -30,12 +29,12 @@ namespace DriveApp
                 await Task.CompletedTask;
             }
         }
-        public async void WriteToDataBase()
+        public async void WriteToDataBase(double distance)
         {
             await CheckWritePermission();
             try
             {
-                await database.AddStats(tracking.distance);
+                await database.AddStats(distance);
             }
             catch (Exception e)
             {

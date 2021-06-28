@@ -27,7 +27,6 @@ namespace DriveApp
             await Init();
             MyStats stats = new MyStats
             {
-                Day = DateTime.Today.DayOfWeek.ToString(),
                 Timecreated = DateTime.Today,
                 Distance = distance,
             };
@@ -35,7 +34,6 @@ namespace DriveApp
         }
         public async Task RemoveStats(int id)
         {
-
             await Init();
             await db.DeleteAsync<MyStats>(id);
         }

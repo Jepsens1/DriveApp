@@ -12,9 +12,9 @@ namespace DriveApp
     {
 
         CancellationTokenSource cts;
-        public bool isTracking = false;
-        Location lastlocation = null;
-        public double distance = 0;
+        public bool isTracking { get; set; } = false;
+        public Location lastlocation { get; set; }
+        public double distance { get; set; } = 0;
         public async Task<int> RecieveSpeed()
         {
             await CheckLocationPermission();
@@ -36,7 +36,7 @@ namespace DriveApp
             return 0;
 
         }
-        public async Task<string> RecieveLocation()
+        public async Task<double> RecieveLocation()
         {
             await CheckLocationPermission();
             try
@@ -51,8 +51,8 @@ namespace DriveApp
                 }
                 lastlocation = currentLocation;
 
-
-                return $"Latitude: {(int)currentLocation.Latitude}\nLongitude: {(int)currentLocation.Longitude}\nAltitude: {(int)currentLocation.Altitude}\nDistance: {Math.Truncate(distance * 1000) / 1000} km";
+                return distance;
+                 //$"Latitude: {(int)currentLocation.Latitude}\nLongitude: {(int)currentLocation.Longitude}\nAltitude: {(int)currentLocation.Altitude}\nDistance: {Math.Truncate(distance * 1000) / 1000} km";
 
             }
 
@@ -62,7 +62,7 @@ namespace DriveApp
                 {
                     Application.Current.MainPage.DisplayAlert("Not supported", "Enhed understøtter ikke denne app", "OK");
                 });
-                return null;
+                return 0;
             }
             catch (FeatureNotEnabledException)
             {
@@ -70,13 +70,13 @@ namespace DriveApp
                 {
                     Application.Current.MainPage.DisplayAlert("GPS ikke tilsluttet", "Fejl opstod, vær venlig at sikre GPS er slået til", "OK");
                 });
-                return null;
+                return 0;
                 // Handle not enabled on device exception
             }
             catch (PermissionException)
             {
 
-                return null;
+                return 0;
             }
             catch (Exception)
             {
@@ -85,7 +85,7 @@ namespace DriveApp
                     Application.Current.MainPage.DisplayAlert("Lokation ikke fundet", "Prøv igen", "OK");
 
                 });
-                return null;
+                return 0;
                 // Unable to get location
             }
 
