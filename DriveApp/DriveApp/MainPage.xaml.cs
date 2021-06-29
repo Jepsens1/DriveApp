@@ -18,6 +18,8 @@ namespace DriveApp
         {
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, false);
+            BackgroundColor = Color.FromHex("1478A8");
+            Button.BackgroundColor = Color.FromHex("B20000");
         }
         CancellationTokenSource cts;
         DatabaseManager databaseManager = new DatabaseManager();
@@ -27,8 +29,8 @@ namespace DriveApp
             tracking.isTracking = !tracking.isTracking;
             if (tracking.isTracking)
             {
-                ((Button)sender).BackgroundColor = Color.Green;
-                ((Button)sender).Text = "Tracking";
+                Button.BackgroundColor = Color.FromHex("99FF99");
+                Button.Text = "Stop";
                 Thread getLocation = new Thread(UpdatePosition);
                 Thread getSpeed = new Thread(GetSpeed);
                 getLocation.Start();
@@ -36,8 +38,8 @@ namespace DriveApp
             }
             else
             {
-                ((Button)sender).BackgroundColor = Color.Red;
-                ((Button)sender).Text = "Start Tracking";
+                Button.BackgroundColor = Color.FromHex("B20000");
+                Button.Text = "Start";
                 if (tracking.distance == 0)
                 {
                     return;

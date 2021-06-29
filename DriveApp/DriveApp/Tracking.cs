@@ -92,7 +92,10 @@ namespace DriveApp
         }
         public async Task<PermissionStatus> CheckLocationPermission()
         {
+            try
+            {
 
+           
             PermissionStatus status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
             if (status == PermissionStatus.Granted)
             {
@@ -107,6 +110,12 @@ namespace DriveApp
             }
 
             return status;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return 0;
 
         }
 

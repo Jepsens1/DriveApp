@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DriveApp.App">
     <Application.Resources>
-
+        <Color x:Key="Primary">#1478A8</Color>
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}"></Setter>
+        </Style>
     </Application.Resources>
 </Application>

@@ -12,7 +12,10 @@ namespace DriveApp
         MyStatsDatabase database = new MyStatsDatabase();
         public async Task CheckWritePermission()
         {
+            try
+            {
 
+            
             PermissionStatus read = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
             PermissionStatus write = await Permissions.CheckStatusAsync<Permissions.StorageWrite>();
             if (read == PermissionStatus.Granted && write == PermissionStatus.Granted)
@@ -27,6 +30,11 @@ namespace DriveApp
                     Permissions.RequestAsync<Permissions.StorageWrite>();
                 });
                 await Task.CompletedTask;
+            }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
         public async void WriteToDataBase(double distance)
