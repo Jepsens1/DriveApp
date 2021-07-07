@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DriveApp.MainPage">
-
+             x:Class="DriveApp.MainPage"
+             BackgroundColor="#004ba6">
     <StackLayout>
-        <Button x:Name="Button" Text="Start Tracking" WidthRequest="200" HeightRequest="200" CornerRadius="100" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White" Clicked="Button_Clicked"/>
-        <Label x:Name="GPS" FontSize="Title" TextColor="White" Padding="30,10,30,10"/>
+        <Button x:Name="Button" Text="Slukket" BackgroundColor="#cc2118" WidthRequest="200" HeightRequest="200" CornerRadius="100" VerticalOptions="Center" HorizontalOptions="Center" BorderColor="Black" BorderWidth="2" TextColor="White" Clicked="Button_Clicked"/>
+        <Label x:Name="GPS" FontSize="Title"  TextColor="White" Padding="30,10,30,10"/>
         <Label x:Name="Speed" FontSize="Title" TextColor="White" Padding="30,10,30,10"/>
-        <Button Text="Statistik" BackgroundColor="White" Clicked="NavigateButton_Click" VerticalOptions="CenterAndExpand"></Button>
+        <Button Text="Statistik" BackgroundColor="White" Clicked="NavigateButton_Click" VerticalOptions="EndAndExpand"></Button>
     </StackLayout>
-
 </ContentPage>

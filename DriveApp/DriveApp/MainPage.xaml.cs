@@ -18,8 +18,6 @@ namespace DriveApp
         {
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, false);
-            BackgroundColor = Color.FromHex("1478A8");
-            Button.BackgroundColor = Color.FromHex("B20000");
         }
         CancellationTokenSource cts;
         DatabaseManager databaseManager = new DatabaseManager();
@@ -29,8 +27,8 @@ namespace DriveApp
             tracking.isTracking = !tracking.isTracking;
             if (tracking.isTracking)
             {
-                Button.BackgroundColor = Color.FromHex("99FF99");
-                Button.Text = "Stop";
+                Button.BackgroundColor = Color.FromHex("0fbd21");
+                Button.Text = "Aktiv";
                 Thread getLocation = new Thread(UpdatePosition);
                 Thread getSpeed = new Thread(GetSpeed);
                 getLocation.Start();
@@ -38,8 +36,8 @@ namespace DriveApp
             }
             else
             {
-                Button.BackgroundColor = Color.FromHex("B20000");
-                Button.Text = "Start";
+                Button.BackgroundColor = Color.FromHex("cc2118");
+                Button.Text = "Slukket";
                 if (tracking.distance == 0)
                 {
                     return;
@@ -47,6 +45,7 @@ namespace DriveApp
                 else
                 {
                     databaseManager.WriteToDataBase(tracking.distance);
+                    tracking.distance = 0;
 
                 }
             }
@@ -59,7 +58,7 @@ namespace DriveApp
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    Speed.Text = $"Speed: {speed}";
+                    Speed.Text = $"Hastighed: {speed}";
                 });
             }
             catch (Exception e)
@@ -74,7 +73,7 @@ namespace DriveApp
             tracking.distance = await tracking.RecieveLocation();
             Device.BeginInvokeOnMainThread(() =>
             {
-                GPS.Text = tracking.distance.ToString();
+                GPS.Text = tracking.ToString();
             });
         }
 
@@ -110,8 +109,21 @@ namespace DriveApp
             }
             else
             {
-                databaseManager.WriteToDataBase(tracking.distance);
-                await Navigation.PushAsync(new MyProfilePage());
+                if (tracking.isTracking)
+                {
+                    Button.BackgroundColor = Color.FromHex("cc2118");
+                    Button.Text = "Slukket";
+                    tracking.isTracking = false;
+                    databaseManager.WriteToDataBase(tracking.distance);
+                    tracking.distance = 0;
+                    await Navigation.PushAsync(new MyProfilePage());
+
+                }
+                else
+                {
+                    await Navigation.PushAsync(new MyProfilePage());
+
+                }
             }
 
         }

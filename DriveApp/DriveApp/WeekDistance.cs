@@ -23,7 +23,7 @@ namespace DriveApp
 
         public override string ToString()
         {
-            return $"{Week} Distance: {Math.Truncate(Distance * 1000) / 1000}\n";
+            return $"{Week} Kørt: {Math.Truncate(Distance * 1000) / 1000}\n";
         }
     }
 }

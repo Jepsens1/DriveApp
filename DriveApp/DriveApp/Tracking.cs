@@ -118,6 +118,10 @@ namespace DriveApp
             return 0;
 
         }
+        public override string ToString()
+        {
+            return $"Kørt {Math.Truncate(distance * 1000) / 1000} indtil videre";
+        }
 
     }
 }

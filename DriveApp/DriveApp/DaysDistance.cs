@@ -25,7 +25,7 @@ namespace DriveApp
         }
         public override string ToString()
         { 
-            return $"{Day} Distance: {Math.Truncate(Distance * 1000) / 1000}\n";
+            return $"{Day} Kørt: {Math.Truncate(Distance * 1000) / 1000}\n";
         }
     }
 }

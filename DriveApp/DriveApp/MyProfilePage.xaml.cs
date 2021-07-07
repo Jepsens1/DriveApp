@@ -117,9 +117,9 @@ namespace DriveApp
                 {
                     MonthStats.Text += weekDistances[i].ToString();
                 }
-                KmToday.Text = $"Kørt idag {Math.Truncate(todayTotal * 1000) / 1000}";
-                KmWeek.Text = $"Kørt denne uge {Math.Truncate(weekTotal * 1000) / 1000}";
-                KmMonth.Text = $"Kørt denne måned {Math.Truncate(monthTotal * 1000) / 1000}";
+                KmToday.Text = $"Kørt idag {Math.Truncate(todayTotal * 1000) / 1000} Km";
+                KmWeek.Text = $"Denne uge {Math.Truncate(weekTotal * 1000) / 1000} Km";
+                KmMonth.Text = $"Denne måned {Math.Truncate(monthTotal * 1000) / 1000} Km";
             }
             catch (Exception e)
             {
@@ -129,15 +129,21 @@ namespace DriveApp
         }
         private int GetWeekNumberOfMonth(DateTime date)
         {
-            date = date.Date;
-            DateTime firstMonthDay = new DateTime(date.Year, date.Month, 1);
-            DateTime firstMonthMonday = firstMonthDay.AddDays((DayOfWeek.Monday + 7 - firstMonthDay.DayOfWeek) % 7);
-            if (firstMonthMonday > date)
-            {
-                firstMonthDay = firstMonthDay.AddMonths(-1);
-                firstMonthMonday = firstMonthDay.AddMonths((DayOfWeek.Monday + 7 - firstMonthDay.DayOfWeek) % 7);
-            }
-            return (date - firstMonthMonday).Days / 7 + 1;
+            DateTime beginningOfMonth = new DateTime(date.Year, date.Month, 1);
+
+            while (date.Date.AddDays(1).DayOfWeek != CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek)
+                date = date.AddDays(1);
+
+            return (int)Math.Truncate((double)date.Subtract(beginningOfMonth).TotalDays / 7f) + 1;
+            //date = date.Date;
+            //DateTime firstMonthDay = new DateTime(date.Year, date.Month, 1);
+            //DateTime firstMonthMonday = firstMonthDay.AddDays((DayOfWeek.Monday + 7 - firstMonthDay.DayOfWeek) % 7);
+            //if (firstMonthMonday > date)
+            //{
+            //    firstMonthDay = firstMonthDay.AddMonths(-1);
+            //    firstMonthMonday = firstMonthDay.AddMonths((DayOfWeek.Monday + 7 - firstMonthDay.DayOfWeek) % 7);
+            //}
+            //return (date - firstMonthMonday).Days / 7 + 1;
         }
         private int GetWeekOfYear(DateTime now)
         {
